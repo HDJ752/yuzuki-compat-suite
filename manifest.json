@@ -1,0 +1,13 @@
+{
+  "manifest_version": 1,
+  "id": "yuzuki_compat_suite",
+  "display_name": "柚月兼容合集",
+  "version": "0.2.3",
+  "description": "小猫之神预设兼容、DIE 签名守卫与按预设开关面板。",
+  "author": "Local compatibility patch",
+  "loading_order": -100,
+  "auto_update": true,
+  "requires": [],
+  "js": "index-v0.2.3.js",
+  "css": "styles.css"
+}
