@@ -5,6 +5,7 @@
     right: 12px;
     bottom: 64px;
     width: min(330px, calc(100vw - 24px));
+    box-sizing: border-box;
     padding: 12px;
     color: var(--SmartThemeBodyColor);
     background: var(--SmartThemeBlurTintColor, var(--SmartThemeBodyColor));
@@ -15,14 +16,33 @@
 }
 
 #yuzuki-compat-suite-panel.ycs-open { display: block; }
-.ycs-title, .ycs-row, .ycs-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ycs-title, .ycs-row, .ycs-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-width: 0; }
 .ycs-title { margin-bottom: 8px; }
-.ycs-title button { border: 0; background: transparent; color: inherit; font-size: 1.3em; cursor: pointer; }
+.ycs-title button { min-width: 40px; min-height: 40px; border: 0; background: transparent; color: inherit; font-size: 1.3em; cursor: pointer; }
 .ycs-current { margin-bottom: 10px; line-height: 1.4; }
-.ycs-current small { display: block; opacity: .72; }
+.ycs-current small { display: block; opacity: .72; overflow-wrap: anywhere; }
 .ycs-row { margin: 7px 0; }
-.ycs-row select, .ycs-actions button { color: inherit; background: var(--SmartThemeBlurTintColor, transparent); border: 1px solid var(--SmartThemeQuoteColor); border-radius: 5px; padding: 4px 7px; }
+.ycs-row span { min-width: 0; overflow-wrap: anywhere; }
+.ycs-row select, .ycs-actions button { color: inherit; background: var(--SmartThemeBlurTintColor, transparent); border: 1px solid var(--SmartThemeQuoteColor); border-radius: 5px; padding: 4px 7px; min-height: 40px; }
 .ycs-status { margin-top: 10px; padding-top: 8px; border-top: 1px solid #8885; opacity: .8; font-size: .82em; }
 .ycs-actions { justify-content: flex-end; margin-top: 10px; }
 .ycs-actions button { cursor: pointer; }
-@media (max-width: 600px) { #yuzuki-compat-suite-panel { right: 6px; bottom: 58px; } }
+@media (max-width: 600px) {
+    #yuzuki-compat-suite-panel {
+        position: absolute;
+        left: 6px;
+        right: 6px;
+        bottom: 58px;
+        width: auto;
+        max-height: calc(100dvh - 76px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .ycs-row { align-items: stretch; flex-wrap: wrap; }
+    .ycs-row span { flex: 1 1 150px; }
+    .ycs-row select { flex: 0 1 120px; }
+    .ycs-actions { flex-wrap: wrap; }
+    .ycs-actions button { min-width: 96px; }
+}
